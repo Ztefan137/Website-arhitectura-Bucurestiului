@@ -1,0 +1,34 @@
+{
+  "images": [
+    {
+      "id": 1,
+      "name": "pasaj",
+      "author": "Popescu Ion",
+      "likes": 1240
+    },
+    {
+      "id": 2,
+      "name": "brancovenesc4",
+      "author": "Popescu Ion",
+      "likes": 850
+    },
+    {
+      "id": 3,
+      "name": "brancovenesc2",
+      "author": "Ionescu Popa",
+      "likes": 2105
+    },
+    {
+      "id": 4,
+      "name": "pasaj2",
+      "author": "Ionescu Popa",
+      "likes": 2505
+    },
+      {
+      "id": 5,
+      "name": "centru",
+      "author": "Ionescu Popa",
+      "likes": 2913
+    }
+  ]
+}

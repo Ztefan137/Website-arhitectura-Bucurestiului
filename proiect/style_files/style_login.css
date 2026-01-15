@@ -1,0 +1,55 @@
+body{
+    background-image:url(../images/Calea\ Rahovei.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+#container_login{
+    width:30%;
+    aspect-ratio: 1/1.2;
+    background: white;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+#container_login>form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 15%;
+}
+#container_login>form>h2{
+    color: #333;
+    font-family: sans-serif;
+    margin-bottom: 20px;
+}
+#container_login>form>label{
+    font-family: sans-serif;
+}
+#container_login>form>input{
+    border-radius:5px;
+    min-height: 20px;
+    margin-bottom: 20px;
+}
+#container_login>form>a{
+    color:#333;
+    text-decoration: none;
+}
+#container_login>form>button{
+    background:#1a1a1a;
+    color:white;
+    min-height: 50px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+@media (max-width:480px){
+    #container_login{
+        width:90%;
+        aspect-ratio: 1/2;
+        max-height: 60vh;
+    }
+}

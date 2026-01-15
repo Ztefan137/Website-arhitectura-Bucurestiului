@@ -1,0 +1,133 @@
+//parte care in mod normal ar trebui implementata cu backend
+var images_paths={};
+images_paths["pasaj"]="img_1_carusel.jpg";
+images_paths["brancovenesc4"]="brancovenesc4.jpg";
+images_paths["brancovenesc2"]="brancovenesc2.jpg";
+images_paths["pasaj2"]="pasaj2.jpg";
+images_paths["centru"]="centru.jpg";
+var global_path="images/imagini_pagina_media/";
+var global_idx=0;
+var prec_idx=0;
+
+var image_cache={};
+
+function cache_images(){
+        for(var image_name in images_paths){
+                var img=new Image();
+                img.src=global_path+images_paths[image_name];
+                image_cache[image_name]=img;
+        }
+}
+
+function define_columns(){
+
+}
+function append_image(img,titleText){
+        var max_width=getComputedStyle(document.getElementById("container_imagini")).width;
+        var new_image=document.createElement("div");
+        new_image.style.width="100%";
+        var colors=["red","blue","yellow","green","purple"];
+        new_image.style.aspectRatio=img.naturalWidth+"/"+img.naturalHeight;
+        var color=colors[Math.floor(Math.random()*colors.length)];
+        var image=document.createElement("div");
+        image.style.background=color;
+        image.style.width="90%";
+        image.style.height="90%";
+        image.style.margin="0 auto";
+        image.style.borderRadius="8px";
+        image.style.borderColor="#8f8080";
+        image.style.borderStyle="solid";
+        image.style.borderWidth="2px";
+
+        image.style.background="url("+img.src+")";
+
+        image.style.backgroundSize="cover";
+        image.style.boxShadow = "15px 15px 30px rgba(0, 0, 0, 0.5)";
+        image.id="img_"+global_idx;
+        global_idx++;
+
+        var textOverlay = document.createElement("div");
+        textOverlay.innerText = titleText;
+        
+        textOverlay.style.width = "100%";
+        textOverlay.style.padding = "10px";
+        textOverlay.style.color = "white";
+        textOverlay.style.backgroundColor = "rgba(0, 0, 0, 0.3)"; 
+        textOverlay.style.fontFamily = "sans-serif";
+        textOverlay.style.fontSize = "14px";
+        textOverlay.style.boxSizing = "border-box";
+        textOverlay.style.borderRadius = "8px 8px 0px 0px"; 
+        textOverlay.style.display = "none";
+
+        // 3. Append text to the image
+        image.appendChild(textOverlay);
+
+
+        image.addEventListener("mouseover",function(){
+                console.log("im hovered");
+                document.getElementById(image.id).style.filter="brightness(130%)";
+                textOverlay.style.display = "block";
+        });
+        image.addEventListener("mouseout",function(){
+                console.log("im hovered");
+                document.getElementById(image.id).style.filter="brightness(100%)";
+                textOverlay.style.display = "none";
+        });
+        //image.appendChild(text_container;
+        new_image.appendChild(image);
+        document.getElementById("container_imagini").appendChild(new_image);
+}
+function load_image() {
+    return fetch('imagini.json')
+        .then(response => response.json())
+        .then(data => {
+            var images = data.images;
+            var imagine_curenta = images[Math.floor(Math.random() * images.length)];
+            var text = imagine_curenta.name;
+            return [image_cache[text], text];
+        })
+        .catch(error => {
+            console.error("Error fetching image:", error);
+            return null;
+        });
+}
+async function load_image_batch(batch_size) {
+        var promise_list = [];
+        for (var i = 0; i < batch_size; i++) {
+                promise_list.push(load_image());
+        }
+        var images_to_append = await Promise.all(promise_list);
+        console.log(images_to_append);
+        for(var i=0;i<images_to_append.length;i++){
+                append_image(images_to_append[i][0],images_to_append[i][1]);
+        }
+}
+
+window.onload=function(){
+        console.log(localStorage.getItem("utilizator_curent"))
+        if (localStorage.getItem("utilizator_curent")) {
+                console.log(localStorage.getItem("utilizator_curent"));
+                document.body.classList.add("is-logged-in");
+        }
+        document.getElementById("adaugare").addEventListener('click',function(){
+                if(localStorage.getItem("utilizator_curent")){
+                        alert("Aceasta functie nu este inca disponibila");
+                }else{
+                        alert("Intra in cont pentru a putea adauga imagini")
+                }
+        })
+        cache_images();
+        window.addEventListener("scroll", function () {
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight-10){
+                        load_image_batch(50);
+
+                }
+        });
+        load_image_batch(20);
+}
+
+
+function logout() {
+        localStorage.removeItem("utilizator_curent");
+        window.location.reload();
+}

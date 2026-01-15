@@ -1,0 +1,35 @@
+function validare_form(){
+    var utilizator = document.getElementById("utilizator").value;
+    var regex_utilizator = /^[a-zA-Z0-9]+$/;
+    var parola = document.getElementById("parola").value;
+    var regex_parola = /^(?=.*[a-zA-Z])(?=.*\d).+$/;
+    var confirmare_parola = document.getElementById("confirmare_parola").value;
+    if(utilizator == "" || parola == "" || confirmare_parola == ""){
+        alert("Toate campurile sunt obligatorii!");
+        return false;
+    }
+    if (!regex_utilizator.test(utilizator)) {
+        alert("Numele de utilizator poate conține doar litere și cifre (fără spații sau simboluri)!");
+        return false;
+    }
+    if (!regex_parola.test(parola)) {
+        alert("Parola trebuie să conțină atât litere, cât și cifre!");
+        return false;
+    }
+    if(parola != confirmare_parola){
+        alert("Parolele nu coincid!");
+        return false;
+    }
+    return true;
+}
+
+window.onload=function(){
+    document.getElementById("creare").addEventListener("click",function(event){
+        event.preventDefault();
+        console.log(validare_form());
+        if(validare_form()){
+            localStorage.setItem(document.getElementById("utilizator").value, document.getElementById("parola").value);
+            window.location.href = "./login.html";
+        }
+    });
+}

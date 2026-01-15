@@ -1,0 +1,21 @@
+function logare(){
+    if(localStorage.getItem("utilizator_curent")){
+        window.location.href = "./pagina_principala.html";
+    }
+
+    const user_curent = document.getElementById("utilizator").value;
+    const parola_curenta = document.getElementById("parola").value;
+
+    if(localStorage.getItem(user_curent) === parola_curenta){
+        localStorage.setItem("utilizator_curent", user_curent);
+        setInterval(()=>{window.location.href = "./pagina_principala.html"},100);
+    }else{
+        alert("Utilizator sau parolă greșită");
+    }
+}
+window.onload=function(){
+    document.getElementById("autentificare").addEventListener("click", function(event){
+        event.preventDefault();
+        logare();
+    });
+}

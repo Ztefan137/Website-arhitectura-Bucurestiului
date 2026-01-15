@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La galerie de Bucarest</title>
+    <link rel="stylesheet" href="style_files/style_pagina_principala.css">
+</head>
+<body>
+    <header>
+        <div class="menu">
+            <ol>
+                <div class="menu_left">
+                    <li><img src="images/B logo.png"></li>
+                    <li class="menu_left"><a href="pagina_principala.html">Acasă</a></li>
+                    <li class="menu_left"><a href="media.html">Media</a></li>
+                    <li class="menu_left"><a href="despre.html">Despre</a></li>
+                </div>
+                <div class="menu_right">
+                    <li class="text_right nelogat"><a href="login.html">Autentificare</a></li>
+                    <li class="text_right nelogat"><a href="inregistrare.html">Înregistrare</a></li>
+                    <li class="text_right logat"><a onclick="logout()">Ieși din cont</a></li>
+                </div>
+                <li class="mobile" id="menu_icon"><img src="images/meniu.png">
+                <div id="dropdown">
+                    <div class="dropdown-content"><a href="pagina_principala.html">Acasă</a></div>
+                    <div class="dropdown-content"><a href="media.html">Media</a></div>
+                    <div class="dropdown-content"><a href="despre.html">Despre</a></div>
+                    <div class="dropdown-content nelogat"><a href="login.html">Autentificare</a></div>
+                    <div class="dropdown-content nelogat"><a href="inregistrare.html">Înregistrare</a></div>
+                    <div class="dropdown-content logat"><a onclick="logout()">Ieși din cont</a></div>
+                </div>
+                </li>
+                <li class="mobile" id="logo"><img src="images/B logo.png"></li>
+            </ol>
+        </div>
+    </header>
+    <div class="bg-image img1"></div>
+    <div class="Bucuresti_container">
+        <h1 id="Bucuresti"><u>La Galerie de Bucarest</u></h1>
+        <h3 id="Bucuresti_sub">Poze din orașul tău</h3>
+    </div>
+    <div class="headinguri"><h1>Mai multe</h1></div>
+    <div id="ancora_media">
+        <div>
+            <div>
+                <h1>Vezi ce admiră ceilalți</h1>
+                <hr>
+                <p>Bucureștiul este un oraș al contrastelor. Prin urmare cel mai bun mod de a-l descoperi e de a împărtăși locurile favorite cu ceilalți</p>
+                <div><a href="media.html">Mai mult →</a></div>
+            </div>
+        </div>
+    </div>
+    <div id="ancora_despre">
+        <div>
+            <div>
+                <h1>Află mai multe despre proiectul nostru și despre orașul tău</h1>
+                <hr>
+                <p>Descoperă motivațiile noastre,importanța arhitecturii în viața urbană și poate unele lucruri noi despre București.</p>
+                <div><a href="despre.html">Mai mult →</a></div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div>
+            <div>
+                <p>Pagină web realizată de: Denciu Ștefan</p>
+                <p>Facultatea de Matematică și Informatică, Universitatea din Bucureşti</p>
+                <p>Secția informatică, Seria 15, Grupa 151</p>
+            </div>
+            <div>
+                <h1>CONTACT</h1>
+                <p>email: stefan.denciu@s.unibuc.ro</p>
+                <p>telefon: (+40)737-547-541</p>
+            </div>
+        </div>
+    </footer>    
+    <script>
+        window.onload=() => {
+            console.log(localStorage.getItem("utilizator_curent"))
+            if (localStorage.getItem("utilizator_curent")) {
+                console.log(localStorage.getItem("utilizator_curent"));
+                document.body.classList.add("is-logged-in");
+            }
+        };
+        function logout() {
+            localStorage.removeItem("utilizator_curent");
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>

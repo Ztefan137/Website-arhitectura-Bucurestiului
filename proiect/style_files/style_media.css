@@ -1,0 +1,219 @@
+
+/*body*/
+
+body{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0rem;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    background:white;
+    overflow-x: hidden;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/*meniu dropdown*/
+
+.menu{
+    position: fixed;
+    width: 100%;
+    background: white;
+    background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(219, 219, 219, 1) 100%);
+    justify-self: center;
+    z-index: 10;
+    margin: 0;
+    padding: 0;
+
+    border-style: solid;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-color: rgb(71, 71, 71);
+}
+.menu>ol{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(240, 240, 240, 1) 100%);
+    display: flex;
+    justify-content: space-between;
+}
+.menu_left{
+    justify-self: left;
+}
+.menu_right{
+    margin-right:0;
+    justify-self: right;
+}
+.menu>ol>div>li>img{
+  width: 60px;
+  height: auto;
+  aspect-ratio: 1/1;
+  margin-right: 1vh;
+  vertical-align: middle;
+}
+.mobile{
+    display: none;   
+}
+#dropdown {
+    display: none;
+    z-index: 10;
+    position: fixed;
+    top: 45px;
+    left: 0;
+    background: white;
+    width: 100vw;
+    height: fit-content;
+}
+.dropdown-content {
+    display: block; 
+    padding: 20px;
+    border-bottom: 1px solid black;
+    width: 100%;
+    text-align: center;
+    color: black;
+    box-sizing: border-box;
+}
+.dropdown-content>a{
+    text-decoration: none;
+    color: black;
+}
+
+@media (max-width:960px){
+    .menu>ol{
+        display: flex;
+        justify-content: space-between;
+    }
+    .menu_left,.menu_right{
+        display: none;
+    }
+    .mobile{
+        display: inline-block;
+    }
+    .mobile>img{
+        width: 40px;
+        height: auto;
+        aspect-ratio: 1/1;
+        margin-right: 1vh;
+    }
+    #menu_icon:hover #dropdown{
+        display:block;
+    }}
+.menu>ol>div>li{
+    display: inline-block;
+}
+.menu>ol>div>li>a{
+    display: inline-block;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 30px;
+    font-family: 'Times New Roman';
+    color: black;
+    text-decoration: none;
+}
+@media (max-width:960px){
+    .menu>ol>li>a{
+        display: block;
+        float: left;
+        font-size: 20px;
+    }
+    .menu>ol>div>li>a{
+        display: none;
+    }
+}
+.menu>ol>div>li>a:hover{
+    animation-name: animatie_subliniere;
+    animation-duration: 0.7s;
+    text-decoration: underline;
+    height: inherit;
+}
+@keyframes animatie_subliniere{
+  from {text-decoration-color: white;}
+  to {text-decoration-color:black;}
+}
+.logat {
+    display: none !important;
+}
+
+/* Când utilizatorul este logat */
+body.is-logged-in .nelogat {
+    display: none !important;
+}
+
+body.is-logged-in .logat {
+    display: block !important; 
+}
+
+
+/*continut*/
+
+#adaugare{
+    position:fixed;
+    bottom: 4vh;
+    right: 4vw;
+    min-height: 60px;
+    min-width:140px;
+    color: white;
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+
+    border: none;
+    border-radius: 5px;
+
+    background: black;
+
+    transition: background 0.2s;
+}
+
+#adaugare:hover{
+    background: gray;
+    color: black;
+}
+
+#container_imagini{
+    margin-top: 10vh;
+    /*display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;*/
+
+    column-count: 5; 
+    column-gap: 5px;
+    row-gap: 10px; 
+    width: 100%;
+}
+#container_imagini>div{
+    display: block;
+    break-inside: avoid;
+}
+
+@media (max-width:960px){
+    #container_imagini{
+        margin-top: 10vh;
+        /*display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;*/
+
+        column-count: 3; 
+        row-gap: 5px; 
+        width: 100%;
+    }
+}
+@media (max-width:520px){
+    #container_imagini{
+        margin-top: 10vh;
+        /*display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;*/
+
+        column-count: 1; 
+        row-gap: 5px; 
+        width: 100%;
+    }
+}
